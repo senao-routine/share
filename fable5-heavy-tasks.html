@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fable 5に投げる「重い仕事」プロンプト5選｜Routine Labo LINE特典</title>
+<style>
+  html { -webkit-text-size-adjust: 100%; }
+  img { max-width: 100%; }
+  :root {
+    /* warm parchment ground, ink text, amber-gold accent (gift feel), teal secondary */
+    --bg:        #f6f2e9;
+    --surface:   #fffdf8;
+    --surface-2: #f0ead9;
+    --ink:       #241f18;
+    --ink-soft:  #5c5346;
+    --ink-faint: #8a7f6d;
+    --line:      #e2d9c6;
+    --line-soft: #ece4d4;
+    --accent:    #b9791a;   /* amber-gold */
+    --accent-ink:#8a5a10;
+    --accent-bg: #f6e7cd;
+    --teal:      #2f6f68;
+    --code-bg:   #26221b;
+    --code-ink:  #ece3d2;
+    --code-line: #3a352b;
+    --shadow:    0 1px 2px rgba(40,32,18,.05), 0 8px 30px rgba(40,32,18,.06);
+    --radius: 14px;
+    --maxw: 760px;
+    --font-jp: "Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic",system-ui,sans-serif;
+    --font-mono: "SFMono-Regular",Menlo,Consolas,"Noto Sans Mono",monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:        #17140f;
+      --surface:   #201c16;
+      --surface-2: #2a251d;
+      --ink:       #ece5d7;
+      --ink-soft:  #b6ac99;
+      --ink-faint: #837a68;
+      --line:      #342e24;
+      --line-soft: #2b261e;
+      --accent:    #e0a94a;
+      --accent-ink:#f0c574;
+      --accent-bg: #3a2e17;
+      --teal:      #6fb3aa;
+      --code-bg:   #100e0a;
+      --code-ink:  #e6ddca;
+      --code-line: #2a251d;
+      --shadow:    0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg:#f6f2e9; --surface:#fffdf8; --surface-2:#f0ead9; --ink:#241f18; --ink-soft:#5c5346;
+    --ink-faint:#8a7f6d; --line:#e2d9c6; --line-soft:#ece4d4; --accent:#b9791a; --accent-ink:#8a5a10;
+    --accent-bg:#f6e7cd; --teal:#2f6f68; --code-bg:#26221b; --code-ink:#ece3d2; --code-line:#3a352b;
+    --shadow:0 1px 2px rgba(40,32,18,.05),0 8px 30px rgba(40,32,18,.06);
+  }
+  :root[data-theme="dark"] {
+    --bg:#17140f; --surface:#201c16; --surface-2:#2a251d; --ink:#ece5d7; --ink-soft:#b6ac99;
+    --ink-faint:#837a68; --line:#342e24; --line-soft:#2b261e; --accent:#e0a94a; --accent-ink:#f0c574;
+    --accent-bg:#3a2e17; --teal:#6fb3aa; --code-bg:#100e0a; --code-ink:#e6ddca; --code-line:#2a251d;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-jp);
+    line-height: 1.85;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: .01em;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px 90px; }
+
+  /* ---- Hero ---- */
+  header.hero {
+    text-align: center;
+    padding: 62px 20px 44px;
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; font-weight: 700; letter-spacing: .12em;
+    color: var(--accent-ink);
+    background: var(--accent-bg);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    padding: 7px 15px; border-radius: 100px;
+    text-transform: uppercase;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  h1.title {
+    font-size: clamp(27px, 5.5vw, 40px);
+    line-height: 1.28; font-weight: 800; letter-spacing: .005em;
+    margin: 22px 0 14px; text-wrap: balance;
+  }
+  h1.title .hl { color: var(--accent-ink); }
+  .lede {
+    color: var(--ink-soft); font-size: 15.5px; max-width: 560px; margin: 0 auto;
+    text-wrap: balance;
+  }
+  .hero-rule {
+    width: 54px; height: 3px; border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--teal));
+    margin: 30px auto 0;
+  }
+
+  /* ---- generic section card ---- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 30px 30px 32px;
+    margin-top: 26px;
+  }
+  @media (max-width: 560px){ .card{ padding: 24px 20px 26px; } }
+
+  h2.sec {
+    font-size: 20px; font-weight: 800; margin: 0 0 4px; letter-spacing: .01em;
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .kicker {
+    font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--teal); margin: 0 0 20px;
+  }
+
+  h3.blk {
+    font-size: 15.5px; font-weight: 800; margin: 24px 0 8px;
+    color: var(--ink); display: flex; align-items: center; gap: 9px;
+  }
+  h3.blk::before {
+    content: ""; width: 4px; height: 15px; border-radius: 2px; background: var(--accent);
+    flex: none;
+  }
+  p { margin: 0 0 12px; }
+  .intro-card p:last-child, .card p:last-child { margin-bottom: 0; }
+  strong { font-weight: 700; color: var(--ink); }
+  .card ol, .card ul { margin: 6px 0 12px; padding-left: 1.35em; }
+  .card li { margin-bottom: 7px; }
+  .card li::marker { color: var(--accent-ink); font-weight: 700; }
+
+  /* ---- prompt module ---- */
+  .prompt-head {
+    display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px;
+  }
+  .num {
+    flex: none; width: 46px; height: 46px; border-radius: 12px;
+    display: grid; place-items: center;
+    font-size: 22px; font-weight: 800; color: var(--surface);
+    background: linear-gradient(150deg, var(--accent), var(--accent-ink));
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 35%, transparent);
+    font-variant-numeric: tabular-nums;
+  }
+  .prompt-head .ptitle { font-size: 20px; font-weight: 800; line-height: 1.35; margin: 4px 0 0; text-wrap: balance; }
+
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
+  }
+  .chip {
+    font-size: 12.5px; font-weight: 600; color: var(--ink-soft);
+    background: var(--surface-2); border: 1px solid var(--line);
+    padding: 4px 11px; border-radius: 8px;
+  }
+  .chip b { color: var(--accent-ink); font-weight: 700; }
+
+  .aim {
+    background: var(--surface-2); border-radius: 10px; padding: 14px 16px;
+    font-size: 14.5px; color: var(--ink-soft); margin-bottom: 18px;
+    border-left: 3px solid var(--teal);
+  }
+  .aim strong { color: var(--ink); }
+
+  /* ---- code block w/ copy ---- */
+  .code {
+    position: relative; background: var(--code-bg); border-radius: 12px;
+    border: 1px solid var(--code-line); overflow: hidden;
+  }
+  .code-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 12px 9px 16px; border-bottom: 1px solid var(--code-line);
+    background: color-mix(in srgb, var(--code-bg) 80%, #000);
+  }
+  .code-bar .label {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--code-ink) 55%, transparent);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .code-bar .label .g { color: var(--accent); }
+  .copy-btn {
+    font-family: var(--font-jp);
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    color: var(--code-bg); background: var(--accent);
+    border: none; border-radius: 8px; padding: 6px 14px;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: background .15s, transform .1s;
+  }
+  .copy-btn:hover { background: var(--accent-ink); color: #fff; }
+  .copy-btn:active { transform: translateY(1px); }
+  .copy-btn.done { background: var(--teal); color: #fff; }
+  .copy-btn svg { width: 14px; height: 14px; }
+  .copy-btn:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
+  pre {
+    margin: 0; padding: 18px 18px; overflow-x: auto;
+    font-family: var(--font-mono); font-size: 13.5px; line-height: 1.72;
+    color: var(--code-ink); white-space: pre-wrap; word-break: break-word;
+    tab-size: 2;
+  }
+
+  /* replace + tip rows */
+  .note-row {
+    display: flex; gap: 11px; align-items: flex-start; font-size: 14.5px;
+    padding: 11px 0; border-top: 1px solid var(--line-soft);
+    color: var(--ink-soft);
+  }
+  .note-row:first-of-type { margin-top: 20px; }
+  .note-row .tag {
+    flex: none; font-size: 11.5px; font-weight: 800; letter-spacing: .06em;
+    padding: 3px 9px; border-radius: 7px; margin-top: 3px;
+    white-space: nowrap;
+  }
+  .tag.swap { color: var(--accent-ink); background: var(--accent-bg); }
+  .tag.tip  { color: var(--teal); background: color-mix(in srgb, var(--teal) 16%, transparent); }
+  .note-row strong { color: var(--ink); }
+
+  /* callout for intro sub-lists */
+  .intro-card ol { counter-reset: none; }
+
+  /* FAQ */
+  .faq details {
+    border: 1px solid var(--line); border-radius: 11px; background: var(--surface);
+    margin-bottom: 12px; padding: 2px 4px; box-shadow: var(--shadow);
+  }
+  .faq summary {
+    cursor: pointer; list-style: none; padding: 15px 18px;
+    font-weight: 700; font-size: 15px; display: flex; gap: 11px; align-items: flex-start;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .q {
+    flex: none; color: var(--accent-ink); font-weight: 800; font-size: 15px;
+  }
+  .faq summary .mark { margin-left: auto; color: var(--ink-faint); transition: transform .2s; flex:none; }
+  .faq details[open] summary .mark { transform: rotate(45deg); }
+  .faq .a { padding: 0 18px 16px 41px; color: var(--ink-soft); font-size: 14.5px; }
+  .faq .a strong { color: var(--ink); }
+
+  footer.foot {
+    text-align: center; margin-top: 40px; padding-top: 26px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-faint); font-size: 12.5px; line-height: 1.9;
+  }
+  footer.foot .heart { color: var(--accent); }
+
+  .section-label {
+    text-align: center; margin: 46px 0 4px;
+    font-size: 12.5px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="eyebrow"><span class="dot"></span>Routine Labo 公式LINE特典</span>
+  <h1 class="title">Fable 5に投げる<br><span class="hl">「重い仕事」プロンプト</span>完全版・5選</h1>
+  <p class="lede">動画で実演したプロンプトのフル版です。【 】の部分だけ自分の状況に書き換えて、あとはそのままコピペで使えます。</p>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="wrap">
+
+  <!-- はじめに -->
+  <section class="card intro-card">
+    <p class="kicker">はじめに ─ まずここだけ読んでください</p>
+    <h2 class="sec">5本共通の使い方</h2>
+
+    <h3 class="blk">準備（投げる前の3点セット）</h3>
+    <ol>
+      <li><strong>Claude Code を最新に</strong>：v2.1.170 以上で、<code>/model</code> から Fable 5 を選ぶ（重い仕事のときだけ切り替え、終わったら元のモデルに戻す）</li>
+      <li><strong>バックアップ</strong>：AIに触らせるフォルダは実行前にコピーを取る。失敗しても戻せる状態を先に作る＝これが一番大事</li>
+      <li><strong>作業フォルダで起動</strong>：対象のプロジェクトフォルダで Claude Code を起動してから、プロンプトを貼る</li>
+    </ol>
+
+    <h3 class="blk">使い方のコツ（ハーネス＆ループの考え方）</h3>
+    <ul>
+      <li><strong>検証を先に、実装は後に</strong>：5本とも「先に確認手段を作らせてから作業させる」構造。この順番を崩さない（AIの記憶力ではなく、仕組みに品質を担保させる）</li>
+      <li><strong>1回で終わらせない</strong>：結果を見て「ここが違う」と続けて指示すればどんどん良くなる。うまくいかなければ原因を一言足して再実行（実行→観測→修正のループ）</li>
+      <li><strong>枠の節約</strong>：Fable 5は消費が速い。雑談や軽い作業には使わず、この5本のような重い仕事に絞る。前後に <code>/usage</code> で残量を見ておくと消費量が体感できる</li>
+    </ul>
+
+    <div class="aim" style="margin-top:20px;margin-bottom:0;border-left-color:var(--accent)">
+      <strong>差し替えルール：</strong>プロンプト内の <strong>【 】の部分だけ</strong> 自分の状況に書き換え。それ以外はそのままコピペでOKです。
+    </div>
+  </section>
+
+  <p class="section-label">5本のプロンプト</p>
+
+  <!-- ① -->
+  <section class="card">
+    <div class="prompt-head">
+      <div class="num">1</div>
+      <div><h2 class="ptitle">業務の棚卸しプロンプト</h2></div>
+    </div>
+    <div class="meta">
+      <span class="chip"><b>目安</b> 10〜20分放置でOK</span>
+      <span class="chip"><b>成果物</b> 2ファイル</span>
+      <span class="chip"><b>消費</b> 軽め（読み取り中心）</span>
+    </div>
+    <div class="aim"><strong>ねらい：</strong>いきなり自動化せず、まず自分の仕事の全体像をAIに整理させる。Anthropic公式が推奨する「振り返り」の手法がベース。</div>
+
+    <div class="code">
+      <div class="code-bar">
+        <span class="label"><span class="g">▍</span>プロンプト ①</span>
+        <button class="copy-btn" type="button" aria-label="このプロンプトをコピー">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span class="txt">コピー</span>
+        </button>
+      </div>
+<pre>あなたに私の業務の「棚卸し」を任せます。いきなり自動化はしません。まず全体像の整理だけを行ってください。
+
+## やってほしいこと
+1. このプロジェクトでの過去のやり取り（セッション履歴や作業ファイル）を、サブエージェントを使って振り返り、繰り返し登場するテーマ・作業・つまずきを洗い出してください。
+   ※過去のやり取りが少ない場合は、代わりに私に質問して業務を聞き取ってください（質問は一度にまとめて、最大5問まで）。
+2. 私の業務を「入力（何を受け取る）→ 処理（何をする）→ 出力（何を出す）→ 人間の判断点（人が決めるべき箇所）」の4要素に分解した業務マップを「業務マップ.md」として作成してください。
+3. 業務マップをもとに、自動化・効率化の候補を「効果 × 実現しやすさ」で採点し、上位5件を「自動化候補.md」に提案してください。ただしこの段階では実装しないこと。
+4. 各候補には「自動化した場合、うまく動いたことをどう確認するか（検証方法）」を必ず1行添えてください。
+
+## 制約
+- 推測で埋めない。わからない箇所は【要確認】と明記する。
+- 作成・変更してよいファイルは「業務マップ.md」「自動化候補.md」の2つだけ。他のファイルには触らない。</pre>
+    </div>
+    <div class="note-row"><span class="tag swap">差し替え</span><span>基本そのままでOK。特定の業務だけ棚卸ししたい場合は、冒頭に「対象は<strong>【◯◯の業務】</strong>に絞ります」と1行足す。</span></div>
+    <div class="note-row"><span class="tag tip">ワンポイント</span><span>出てきた業務マップの<strong>「人間の判断点」は消さずに残す</strong>のがコツ。全部自動化しようとすると事故ります（動画の⑤参照）。</span></div>
+  </section>
+
+  <!-- ② -->
+  <section class="card">
+    <div class="prompt-head">
+      <div class="num">2</div>
+      <div><h2 class="ptitle">スキル・プロンプト大掃除プロンプト</h2></div>
+    </div>
+    <div class="meta">
+      <span class="chip"><b>目安</b> 10〜30分</span>
+      <span class="chip"><b>消費</b> 軽め（読み取り中心）</span>
+      <span class="chip"><b>必須</b> <code style="color:inherit">.claude</code> のバックアップ</span>
+    </div>
+    <div class="aim"><strong>ねらい：</strong>溜まったCLAUDE.md・スキル・設定をFable 5自身に監査させる。公式も「古いモデル向けの細かすぎる指示は、かえって品質を下げることがある。削除を検討せよ」と明言。</div>
+
+    <div class="code">
+      <div class="code-bar">
+        <span class="label"><span class="g">▍</span>プロンプト ②</span>
+        <button class="copy-btn" type="button" aria-label="このプロンプトをコピー">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span class="txt">コピー</span>
+        </button>
+      </div>
+<pre>私のClaude Code環境（CLAUDE.md と .claude/ 配下のスキル・エージェント定義・hooks・settings）を監査してください。今回は「診断と提案」まで。修正の実施は、私がレポートを確認して承認してからです。
+
+## 背景
+古いモデル向けに書いた細かすぎる指示は、いまのモデルには過剰指示となり、かえって出力品質を下げることがあります。その観点で棚卸しをしたいです。
+
+## やってほしいこと
+1. 対象ファイルをすべて読み、次の4観点で監査してください：
+   (a) 重複・矛盾している指示
+   (b) いまのモデルには不要な過剰指示（細かく縛りすぎている箇所）
+   (c) 内容が古くなって実態と合っていない記述
+   (d) 逆に不足している指示（私が毎回口頭で繰り返していそうなこと）
+2. 監査結果を「環境監査レポート.md」に、指摘ごとに「該当ファイル／該当箇所／問題／修正案／影響度（高・中・低）」の形式でまとめてください。
+3. 修正案は差分（Before→After）が分かる形で提示してください。まだ適用はしないこと。
+4. 最後に「この指示を消すと困る可能性があるもの」も正直に挙げてください。
+
+## 制約
+- 環境ファイルの変更は一切しない（レポート作成のみ）。
+- 適用は、私がレポートを見て「適用して」と指示してから。</pre>
+    </div>
+    <div class="note-row"><span class="tag swap">差し替え</span><span>そのままでOK。監査対象を広げたい場合は1行目にフォルダを追記。</span></div>
+    <div class="note-row"><span class="tag tip">ワンポイント</span><span>レポートを見て<strong>「影響度・高」だけ先に適用</strong>→数日使って様子を見る→残りを適用、の順が安全（一気に全部変えると何が効いたか観測できなくなる）。</span></div>
+  </section>
+
+  <!-- ③ -->
+  <section class="card">
+    <div class="prompt-head">
+      <div class="num">3</div>
+      <div><h2 class="ptitle">諦めた自動化への再挑戦プロンプト</h2></div>
+    </div>
+    <div class="meta">
+      <span class="chip"><b>目安</b> 30分〜数時間の自走</span>
+      <span class="chip"><b>消費</b> 大きめ（自走が長い）</span>
+    </div>
+    <div class="aim"><strong>ねらい：</strong>過去に挫折した自動化を「スクリプトを直して」ではなく「業務を減らしたい」から丸ごと渡す。公式いわく「最も難しい未解決問題に当てたチームが、最も良い結果を得ている」──難しかったものこそ持ってくる。</div>
+
+    <div class="code">
+      <div class="code-bar">
+        <span class="label"><span class="g">▍</span>プロンプト ③</span>
+        <button class="copy-btn" type="button" aria-label="このプロンプトをコピー">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span class="txt">コピー</span>
+        </button>
+      </div>
+<pre>過去に自動化しようとして諦めた業務があります。以前のやり方の修正ではなく、「この業務を減らす」こと自体をゴールとして、ゼロから設計し直してください。
+
+## 減らしたい業務
+【業務を文章で説明。例：毎週のレポート作成。システムAからデータを取り、表計算で整形して、メールで送っている。所要は毎回約1時間】
+
+## 過去の試みと諦めた理由
+【例：Pythonスクリプトで途中まで作ったが、ログインまわりのエラーが解決できず放置している。当時のファイルは ◯◯ フォルダにある／何もない場合は「初挑戦です」と書く】
+
+## 進め方（必ずこの順番で）
+1. 先に検証ループを作る：実装を書き始める前に「動いたことをどう確認するか」（テスト用データ・確認コマンド・期待する出力）を決めて「検証手順.md」に書いてください。検証手段がないまま実装を積み上げないこと。
+2. 過去の試みにこだわらず、いま最適なアプローチを再設計してください（前のコードを直すより、捨てて作り直す方が良ければ、理由を添えてそうしてください）。
+3. 小さく作って検証ループを回し、動いたら次に進む。一気に全部作らないこと。
+4. 完成したら「README.md」に、使い方／動かなくなったときの調べ方／自動化していない部分（限界）を正直に書いてください。
+
+## 制約
+- パスワード・APIキーなどの認証情報は私に聞くこと（コードに直書きしない）。
+- 既存ファイルを消す・上書きする前には必ず確認を取ること。
+- 完成報告の前に、検証手順.md の手順を実際に実行して、結果を見せること。</pre>
+    </div>
+    <div class="note-row"><span class="tag swap">差し替え</span><span><strong>【減らしたい業務】</strong>と<strong>【過去の試み】</strong>の2箇所。ここが具体的なほど成功率が上がります。</span></div>
+    <div class="note-row"><span class="tag tip">ワンポイント</span><span><strong>「何につまずいて諦めたか」を正直に書く</strong>のが最大のコツ。AIはそこを最初に潰しに行きます。</span></div>
+  </section>
+
+  <!-- ④ -->
+  <section class="card">
+    <div class="prompt-head">
+      <div class="num">4</div>
+      <div><h2 class="ptitle">「一本の流れ」再設計プロンプト</h2></div>
+    </div>
+    <div class="meta">
+      <span class="chip"><b>目安</b> 設計の提案まで15〜30分</span>
+      <span class="chip"><b>承認後</b> に実装</span>
+    </div>
+    <div class="aim"><strong>ねらい：</strong>バラバラに使っている便利ツール・作業を、入口から出口までの一貫フローに作り直す。コードを書かない人でも「自分の仕事の流れ」を渡せば使える。</div>
+
+    <div class="code">
+      <div class="code-bar">
+        <span class="label"><span class="g">▍</span>プロンプト ④</span>
+        <button class="copy-btn" type="button" aria-label="このプロンプトをコピー">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span class="txt">コピー</span>
+        </button>
+      </div>
+<pre>バラバラに実行している作業を、「入口から出口までの一本の流れ」に作り直してください。
+
+## いまの流れ（手作業でつないでいる工程）
+【例：①記事を書く → ②SNS用の要約を作る → ③画像を用意する → ④各サービスに下書き投稿する。いまは各ステップを別々に指示していて、間の受け渡し（コピペ・ファイル移動）が全部手作業】
+
+## やってほしいこと（必ずこの順番で）
+1. まず現状の工程をテキストのフロー図に起こし、「どこが手作業か」「どこで情報の受け渡しが切れているか」を可視化してください。
+2. 一本の流れとして再設計してください。設計方針：
+   - 各工程の出力が、次の工程の入力としてそのまま使えるように、ファイルの置き場所と形式を統一する
+   - 人間の確認ポイントを設計に明示的に入れる（全自動にしない。人が確認すべき箇所で止まる作りにする）
+   - 途中で失敗しても、どこまで進んだかが分かるようにする（進捗の記録を残す）
+3. 設計案を私に見せて、OKが出てから実装してください（スクリプト・スキル・手順書など、私の環境に合う形を提案すること）。
+4. 完成したら、流れ全体を1回通しで実行して見せ、各工程の成果物を確認できるようにしてください。
+
+## 制約
+- 外部サービスへの投稿・送信は、必ず「下書き」「確認待ち」で止めること（勝手に公開・送信しない）。
+- 通しの実行はテスト用の題材で行うこと。</pre>
+    </div>
+    <div class="note-row"><span class="tag swap">差し替え</span><span><strong>【いまの流れ】</strong>。工程は箇条書きで雑に書いてOK。「どこが面倒か」を添えるとさらに良い。</span></div>
+    <div class="note-row"><span class="tag tip">ワンポイント</span><span>一番価値があるのは2の設計方針の3つ。<strong>受け渡しの統一・人間の確認ポイント・進捗の記録</strong>が入っていれば、流れは後からいくらでも育てられます。</span></div>
+  </section>
+
+  <!-- ⑤ -->
+  <section class="card">
+    <div class="prompt-head">
+      <div class="num">5</div>
+      <div><h2 class="ptitle">QA監査プロンプト（事故らない半自動の要）</h2></div>
+    </div>
+    <div class="meta">
+      <span class="chip"><b>目安</b> 10〜20分</span>
+      <span class="chip"><b>用途</b> ①〜④の仕上げに毎回</span>
+    </div>
+    <div class="aim"><strong>ねらい：</strong>完全自動ではなく「事故らない半自動」へ。作った本人（AI）に自己チェックさせず、<strong>まっさらな別のAIに監査させる</strong>。公式も「新しい目（fresh context）の検証は自己批評より強い」としています。</div>
+
+    <div class="code">
+      <div class="code-bar">
+        <span class="label"><span class="g">▍</span>プロンプト ⑤</span>
+        <button class="copy-btn" type="button" aria-label="このプロンプトをコピー">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span class="txt">コピー</span>
+        </button>
+      </div>
+<pre>ここまでの作業（または【監査したい対象：例）さっき作ってもらった自動化スクリプト一式】）を、「作った本人とは別の目」で検証してください。
+
+## やってほしいこと
+1. 新しいサブエージェントを「検証担当」として起動し、実装の経緯を知らない前提で、ゼロから検証させてください。
+2. 検証担当への指示には、必ず次を含めてください：
+   - 「完了しました」という報告を鵜呑みにせず、実際のファイルの中身とコマンドの実行結果に照らして確認すること
+   - 「動くはず」ではなく、実際に動かして確認すること（実行できるものはすべて実行する）
+   - 見つけた問題は、再現手順つきで報告すること
+3. 検証結果をもとに、この種の作業の「QAチェックリスト.md」を作ってください。次回から使い回せる形にすること。
+4. チェックリストは「AIが自動で確認する項目」と「人間が最後に目で確認すべき項目（最後の5%）」に分けて書いてください。
+
+## 制約
+- 問題が見つかっても、勝手に修正しない。まず報告し、修正は私の指示を待つこと。
+- 検証で外部への送信・公開・削除が必要になる場合は、実行せずに手順の提示だけにすること。</pre>
+    </div>
+    <div class="note-row"><span class="tag swap">差し替え</span><span><strong>【監査したい対象】</strong>のみ。直前の作業を見せたい場合は消してそのままでOK。</span></div>
+    <div class="note-row"><span class="tag tip">ワンポイント</span><span>これが動画で言った<strong>「最後の5%は人間」</strong>の実装。チェックリストの「人間が確認すべき項目」だけは、面倒でも自分の目で見てください。ここを守る限り、大胆に任せても事故りません。</span></div>
+  </section>
+
+  <!-- FAQ -->
+  <p class="section-label">よくある質問</p>
+  <section class="faq" style="margin-top:8px">
+    <details>
+      <summary><span class="q">Q.</span><span>枠（50%）が心配です</span><span class="mark">＋</span></summary>
+      <div class="a">①と②は読み取り中心なので比較的軽め、③④は自走時間が長いので消費大きめです。<strong>残量が少ない週は①②⑤だけでも十分に価値があります。</strong></div>
+    </details>
+    <details>
+      <summary><span class="q">Q.</span><span>途中で止まった／変な方向に行った</span><span class="mark">＋</span></summary>
+      <div class="a">遠慮なく止めてください。「いまの方針だと◯◯が困る。△△の方向で」と一言足して再開すれば軌道修正されます。<strong>ダメだった原因を足して投げ直すのが一番の上達法</strong>です。</div>
+    </details>
+    <details>
+      <summary><span class="q">Q.</span><span>Fable 5が使えなくなったら無意味？</span><span class="mark">＋</span></summary>
+      <div class="a">いいえ。この5本が作るのは「業務マップ・検証手順・チェックリスト・一本の流れ」という<strong>残る仕組み</strong>です。作った後は普段のモデルでも回せます。</div>
+    </details>
+  </section>
+
+  <footer class="foot">
+    本資料の仕様・期限に関する記述は2026年7月3日時点のものです。最新はAnthropic公式をご確認ください。<br>
+    © Routine Labo｜再配布はご遠慮ください。感想はぜひ動画のコメント欄へ <span class="heart">♥</span>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pre = btn.closest('.code').querySelector('pre');
+      var text = pre.innerText;
+      var label = btn.querySelector('.txt');
+      var done = function () {
+        btn.classList.add('done');
+        label.textContent = 'コピーしました';
+        setTimeout(function () { btn.classList.remove('done'); label.textContent = 'コピー'; }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallback(text, done); });
+      } else {
+        fallback(text, done);
+      }
+    });
+  });
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+</body>
+</html>
