@@ -1,0 +1,15 @@
+# yt-share — 視聴者向け配布ページ（公開）
+
+YouTube視聴者向けの配布ページ置き場。URLは動画・概要欄・LINE等で公開している。
+
+**サイトルート: https://senao-routine.github.io/yt-share/**
+
+## 公開URL一覧（このURLを叩けば表示される）
+
+| 公開日 | タイトル | URL |
+|---|---|---|
+| 2026-07-08 | [Claude Codeを"見える化"する — HTMLプレビュー化プロンプト](https://senao-routine.github.io/yt-share/20260708-claude-code-html-preview.html) | https://senao-routine.github.io/yt-share/20260708-claude-code-html-preview.html |
+| 2026-07-07 | [Fable 5に投げる「重い仕事」プロンプト5選｜Routine Labo LINE特典](https://senao-routine.github.io/yt-share/20260705-fable5-heavy-tasks.html) | https://senao-routine.github.io/yt-share/20260705-fable5-heavy-tasks.html |
+
+> 自動生成: works の `共有ページ/publish_share.sh` 実行時に更新される
+> （手動: `python3 共有ページ/HTMLプレビュー/_build_share_readmes.py`）。直接編集しない。
