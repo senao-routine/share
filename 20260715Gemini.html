@@ -35,6 +35,12 @@
   .divider{height:1px;background:var(--line);margin:2.4em 0;border:0}
   .meta-row{color:var(--ink-faint);font-size:14px;margin-top:.2em}
   .footer{margin-top:2.4em;padding-top:1.2em;border-top:1px solid var(--line);color:var(--ink-faint);font-size:14px}
+  .ph{color:var(--ink-soft);font-size:15.5px}
+  .copybox{position:relative;background:#26221b;border-radius:var(--radius);margin:1em 0;overflow:hidden;box-shadow:var(--shadow)}
+  .copybox .cap{display:block;font-size:12px;color:#cbb98f;padding:11px 14px 0;font-weight:700;letter-spacing:.04em}
+  .copybox pre{margin:0;padding:10px 14px 16px;color:#ece3d2;font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:12.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word;overflow-x:auto}
+  .copy-btn{position:absolute;top:9px;right:9px;background:var(--accent);color:#fffdf8;border:0;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+  .copy-btn.done{background:var(--teal)}
 </style>
 </head>
 <body>
@@ -119,6 +125,118 @@
   </figure>
   <p>毎週ゼロから頼むのは、実はまだ非効率です。ここで <strong>Gem</strong>（自分専用にカスタムしたGemini）の出番。うちの学校の会議フォーマット、よく使う見出し、書き方のクセを一度仕込んでおけば、次からは <strong>議題を言うだけで&quot;いつもの体裁&quot;</strong> で出てきます。毎週の定型業務が&quot;仕組み&quot;になります。</p>
 
+  <h2>そのまま使えるプロンプト集（汎用）</h2>
+  <p class="ph">実際に運用しているレシピを、<strong>発信元と資料の種類だけ書き換えれば誰でも使える形</strong>に一般化したものです。<code>{ }</code> を自分用に直してコピーしてください。</p>
+
+  <h3>① Gemの「指示」に貼る — レシピ本体</h3>
+  <div class="copybox">
+    <span class="cap">GEM システム指示</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+<pre># 役割
+あなたは「{組織・チーム名}」の資料作成アシスタントです。
+利用者が渡す「その回の画像」と「口頭または文章の説明」から、
+{資料の種類}用の分かりやすい資料を作成します。
+
+# 毎回の入力
+- その回のスクリーンショットや写真（複数可）
+- 内容の説明（音声または文章）
+- 日付・タイトル（指定が無ければ必ず聞き返す）
+
+# 出力
+- Canvas に、下記デザインに厳密に従った 1 本の資料（HTML）を作成する。
+- そのまま Google ドキュメントに書き出せる形にする。
+
+# 資料の構成（この順で固定）
+1. タイトル（大見出し）＋発信「{発信元}」＋日付
+2. アイキャッチ画像（資料全体を表す図解イラスト。下記スタイルで生成）
+3. 「本資料の内容」＝番号付きの目次＋各項目に 1 行の説明
+4. 各セクション：見出し → その節を 1 枚で図解したイラスト → 本文（手順・注意・箇条書き）
+5. まとめ・お願い
+
+# 文体
+- ですます調。結論・お願いを先に、手順を後に。見出しと箇条書きで拾い読みできるように。
+
+# デザイン（配色・見た目）
+- 背景＝パーチメント #f6f2e9 ／ 面＝#fffdf8 ／ 本文＝#241f18
+- アクセントは 2 色のみ：アンバーゴールド #b9791a（強調・章番号）＋ ティール #2f6f68（小見出し）
+- 罫線 #e2d9c6。角丸・ヘアライン・背景の明度差で構造を出す。
+- 使わない：色付きの左アクセントバー／絵文字の箇条書き／紫・原色／濃いダーク背景。
+
+# イラスト（各画像）
+- 温かいクリーム地に、太い手描き風の輪郭線で描く「図解インフォグラフィック」。
+- くすんだレトロ配色（テラコッタ／ティール／マスタード／セージ）。平面フラット・影は最小。
+- 図解の中に短い日本語ラベル・見出しを入れる（上部に見出し＋各アイコン下に 2〜6 字ラベル＋矢印）。
+
+# 守ること（重要）
+- 外部に出る可能性がある表現では、特定の個人名・組織名を書かない（発信は「{発信元}」）。
+- 画像内の日本語ラベルは短く。生成後に文字が崩れていたら作り直す。
+- 情報が足りないときは推測で埋めず、利用者に一言確認する。</pre>
+  </div>
+
+  <h3>② Gemの「知識」に貼る — デザイン仕様（ブレ止め）</h3>
+  <div class="copybox">
+    <span class="cap">デザイン仕様（知識に添付）</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+<pre>【配色トークン（この色だけを使う）】
+背景        #f6f2e9   （パーチメント地）
+面・カード   #fffdf8
+淡いパネル   #f0ead9
+本文        #241f18
+補足テキスト #8a7f6d
+罫線        #e2d9c6
+主アクセント アンバーゴールド #b9791a（濃い #8a5a10）
+副アクセント ティール #2f6f68
+注意ボックス 背景 #f6e7cd ＋ 枠 #b9791a
+
+【レイアウトの型】
+- タイトルは太字・大きめ。章番号はゴールドの丸バッジ。小見出しはティール。
+- 章ごとに「見出し → 図解イラスト → 本文」。手順は番号付き、注意は淡ゴールドの箱。
+- カード・画像・箱はすべて角丸＋細いヘアライン枠。影はごく薄く。
+
+【完成例のイメージ（自分の題材に置き換える）】
+{資料の種類}の連絡資料：各章の冒頭に、日本語ラベル入りの手描き図解を 1 枚ずつ配置する。</pre>
+  </div>
+
+  <h3>③ 毎回の最初に送る「依頼プロンプト」</h3>
+  <div class="copybox">
+    <span class="cap">毎回の依頼（雛形）</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+<pre>今日の資料を作ってください。いつもの構成・配色でお願いします。
+
+・日付：2026年◯月◯日
+・タイトル：____________________
+・発信：{発信元}
+・伝えたいこと（このあと画像と声で補足します）：
+  1) __________________________
+  2) __________________________
+
+添付した画像を本文の該当箇所に図として入れ、
+各セクションの見出しの下には「日本語ラベル入りの図解イラスト」を 1 枚ずつ付けてください。
+最後に「まとめ・お願い」を入れて、Canvas に 1 枚のHTMLで出してください。
+足りない情報があれば、作る前に質問してください。</pre>
+  </div>
+
+  <h3>④ 図解イラストを単体で作る「生成プロンプト」</h3>
+  <div class="copybox">
+    <span class="cap">図解イラスト生成（雛形）</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">コピー</button>
+<pre>資料用の図解イラストを 1 枚作ってください。
+
+・形：横長 16:9、温かいクリーム色の紙背景
+・線：太い手描き風の黒い太線（マーカー調）でフラットに
+・色：くすんだレトロ配色（テラコッタレッド／青緑ティール／マスタードイエロー／セージグリーン）
+・テーマ：「____（例：申請から承認までの流れ）」
+・構図：____（例：左から右へ ①申請 → ②確認 → ③承認 を太い矢印でつなぐ）
+・上部中央の見出しラベル：「____」
+・各アイコンの下に短い日本語ラベル：「____」「____」「____」
+
+日本語ラベルは短く・はっきり・誤字なしで。指定した以外の文字や英字は入れない。影は最小限。</pre>
+  </div>
+  <div class="note">
+    <span class="lbl">ラベルが崩れたら</span><br>
+    AI画像は日本語がまれに崩れます。おかしな字はラベルを2〜4字に短くして「もう一度、文字をはっきり正確に」と頼むと直りやすいです。
+  </div>
+
   <h2>まとめ</h2>
   <p>Geminiだけで、資料作成は「作業」から「仕組み」へ変わります。</p>
   <ul>
@@ -131,5 +249,17 @@
   <div class="footer">図解：AIの教科書 ／ 仕様は2026年7月時点</div>
 
 </div>
+<script>
+function copyPrompt(btn){
+  var pre = btn.parentElement.querySelector('pre');
+  var text = pre.innerText.trim();
+  navigator.clipboard.writeText(text).then(function(){
+    var o = btn.textContent;
+    btn.textContent = '✓ コピーしました';
+    btn.classList.add('done');
+    setTimeout(function(){ btn.textContent = o; btn.classList.remove('done'); }, 1800);
+  });
+}
+</script>
 </body>
 </html>
