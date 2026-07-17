@@ -240,6 +240,16 @@ footer{margin-top:0;background:var(--dark);color:#EBDFC9;padding:44px 24px 46px}
 .gkey i{font-style:normal;background:#F6E8D6;color:var(--amber-deep);font-weight:800;border-radius:999px;padding:4px 14px;margin-left:6px}
 .gnote{text-align:center;font-size:12.5px;color:var(--sub);margin:22px 0 8px}
 
+/* ===== メンバー限定資料（アップセル導線=加入画面へ直行） ===== */
+.glock-label{text-align:center;font-size:14px;font-weight:850;color:var(--amber-deep);margin:34px 0 14px;letter-spacing:.04em}
+.gifts.glock{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));max-width:760px;margin:0 auto}
+.gcard.lock{background:#FDF9F0;border:1.5px solid #E3C892}
+.gcard.lock::before{background:var(--amber)}
+.gcard.lock.biz{background:#F8F6FE;border-color:#C9B7F2}
+.gcard.lock.biz::before{background:var(--blurple)}
+.gkey .lk{background:var(--amber);color:#fff;margin-left:0}
+.gkey .lk.bz{background:var(--blurple)}
+
 </style>
 </head>
 <body>
@@ -410,6 +420,23 @@ footer{margin-top:0;background:var(--dark);color:#EBDFC9;padding:44px 24px 46px}
     </a>
   </div>
   <p class="gnote rv">受け取り方: 公式LINEに友だち追加 → トークに合言葉を送る → その場で届きます（すべて無料）</p>
+
+  <div class="glock-label rv">🔒 ここから先は、メンバー限定。</div>
+  <div class="gifts glock">
+    <a class="gcard lock rv" href="https://www.youtube.com/channel/UCmbdU1d-_oKJHE7ZtPv1vpg/join">
+      <div class="gtop">🎓</div>
+      <b>日曜セミナー 完全資料</b>
+      <span>AIゲーム収益化／Claude Code×Codex実務活用など、限定動画とセットの実践資料</span>
+      <div class="gkey"><i class="lk">🎬 スタンダードAIプランで開放</i></div>
+    </a>
+    <a class="gcard lock biz rv d1" href="https://www.youtube.com/channel/UCmbdU1d-_oKJHE7ZtPv1vpg/join">
+      <div class="gtop">💼</div>
+      <b>「開発と収益化」シリーズ資料</b>
+      <span>自作ツールの価格設計・原価・集客まで、開発の裏側をぜんぶ見せる資料</span>
+      <div class="gkey"><i class="lk bz">💼 ビジネスAIプランで開放</i></div>
+    </a>
+  </div>
+  <p class="gnote rv">🔒カードを押すとメンバーシップの登録画面へ。加入するとメンバー限定動画とあわせて受け取れます。</p>
 </div>
 
 <section class="band" id="line">
