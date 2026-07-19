@@ -112,8 +112,24 @@
   <li>kimi.com にメールまたはGoogleログインで登録→モデル一覧からK3を選ぶだけ。スマホアプリあり</li>
   <li>無料プランAdagioで今日から試せる（エージェント系機能に制限・無料枠の上限は非公開で変動あり）</li>
   <li>中国大陸版と国際版の2系統→日本からは国際版（USD建て）</li>
-  <li>【上級】Claude CodeからK3を使う設定（Anthropic互換API・公式ガイドあり）:</li>
 </ul>
+<h3>ターミナルで使う①：Kimi純正CLI「Kimi Code」（Moonshot公式・Node.js不要）</h3>
+<div class="promptbox">
+  <button class="copy">コピー</button>
+  <pre><code># mac / Linux（推奨・Node.js不要、uvを自動で入れてくれる）
+curl -fsSL https://code.kimi.com/kimi-code/install.sh | bash
+
+# npmで入れる場合（Node.js 22.19以降）
+npm install -g @moonshot-ai/kimi-code
+
+# Windows（PowerShell）
+irm https://code.kimi.com/kimi-code/install.ps1 | iex
+
+# 起動して初回ログイン → 使うモデルをK3に
+kimi
+#   CLI内で /login（Kimi Code OAuth か MoonshotのAPIキー） → /model でK3を選ぶ</code></pre>
+</div>
+<h3>ターミナルで使う②：Claude CodeのままK3へ差し替え（Anthropic互換API・公式ガイドあり）</h3>
 <div class="promptbox">
   <button class="copy">コピー</button>
   <pre><code>ANTHROPIC_BASE_URL=https://api.moonshot.ai/anthropic
@@ -294,6 +310,7 @@ YouTubeメンバーシップ限定Discordコミュニティ https://discord.gg/R
   <li>Moonshot AI公式ブログ: https://www.kimi.com/blog/kimi-k3</li>
   <li>料金（公式）: https://platform.kimi.ai/docs/pricing/chat-k3 ／ https://www.kimi.com/help/membership/membership-pricing</li>
   <li>Claude Code連携（公式）: https://platform.kimi.ai/docs/guide/claude-code-kimi</li>
+  <li>Kimi Code CLI 導入コマンド（公式）: https://www.kimi.com/code</li>
   <li>Fortune: https://fortune.com/2026/07/16/moonshots-kimi-k3-pushes-chinese-ai-into-fable-level-territory/</li>
   <li>GIGAZINE: https://gigazine.net/news/20260717-kimi-k3/</li>
   <li>Arena首位発表: https://x.com/arena/status/2077824029126504525</li>
